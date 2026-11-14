@@ -182,3 +182,151 @@ Moving (x/y only) never triggers. Shrinking never triggers. A widget that is not
 - On incoming message: parses JSON payload (handling string, Buffer, or object) and invokes `store.applySocketUpdates(payload)`.
 - Lifecycle: automatically manages subscriptions, tracks `isConnected`, and performs clean unsubscribes / client disconnects on unmount.
 - Wired directly to `<UI.Canvas mqttUrl="ws://..." mqttTopic="..." />` so applications need zero boilerplate.
+<<<<<<< HEAD
+=======
+
+## 6.21 UI.AIWidget — AI Chat Panel
+
+`UI.AIWidget` (alias `UI.AIPanel`) is a floating, draggable, non-canvas panel (like `MasterPanel`) that connects the editor to an AI backend over Socket.IO. It is hidden automatically when the page is deployed (`pageDeployed === true`).
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `socketUrl` | `string` | — | Socket.IO server URL. Creates an internal managed connection. |
+| `socket` | Socket.IO instance | — | Pass an already-connected socket instead of `socketUrl`. |
+| `sendPromptEvent` | `string` | `"aiPrompt"` | Socket event emitted when the **Send** button is clicked. |
+| `receiveResponseEvent` | `string` | `"aiResponse"` | Socket event the widget listens on for AI replies. |
+| `saveEvent` | `string` | — | Separate event for the **Save** button. Falls back to `sendPromptEvent` if omitted. |
+| `getLogsEvent` | `string` | `"aiLogs"` | Every send and receive is also emitted on this event for external logging/storage. |
+| `defaultPosition` | `{ x, y }` | `{ x: 20, y: 380 }` | Initial panel screen position. |
+| `title` | `string` | `"AI Assistant"` | Panel header label. |
+| `style` | object | — | Extra inline styles on the panel container. |
+| `className` | `string` | — | Extra CSS class. |
+
+### Send button — targeted widget JSX
+
+When the **Send** button is clicked (or `Ctrl+Enter` in the textarea):
+
+1. Reads all widget IDs currently ticked in `aiSelectionStore` (the AI tick checkboxes in `UI.WidgetListPanel`).
+2. For each ticked widget, calls `toWidgetJSX(el)` (from `InspectorPanel.jsx`) to produce a full JSX string identical to what the InspectorPanel's "Copy JSX" button generates — including all layout props, content props, `solid`, `hidden`, `deploy`, `isDraggable`, `isResizable`.
+3. Emits on `sendPromptEvent`:
+   ```json
+   {
+     "prompt": "<user typed text>",
+     "widgets": [
+       { "id": "btn-submit", "jsx": "<UI.Button id=\"btn-submit\" position={{ x: 100, y: 150 }} size={{ width: 140, height: 44 }} text=\"Submit\" />" },
+       ...
+     ]
+   }
+   ```
+   `widgets` is an empty array `[]` if no widgets are ticked.
+4. Also emits on `getLogsEvent`: `{ timestamp, direction: "sent", event, payload }`.
+
+### Save button — changed widgets only
+
+The **Save** button tracks UI changes by comparing each element's current `toWidgetJSX()` output against a **snapshot** taken at mount time (or after the last save).
+
+- **Disabled** (`disabled` attribute, grayed-out, `cursor: not-allowed`) when nothing has changed since the last snapshot.
+- **Enabled** when ≥ 1 widget differs. The button label shows the count: `"Save N Change(s) to App.jsx"`.
+- On click (only possible when enabled):
+  1. Emits on `saveEvent` (or `sendPromptEvent`) with a **fixed hard-coded prompt**:
+     ```json
+     {
+       "prompt": "Make this changes to the current UI",
+       "widgets": [
+         { "id": "panel-left", "jsx": "<UI.ParentPanel id=\"panel-left\" position={{ x: 20, y: 20 }} size={{ width: 300, height: 400 }} />" }
+       ]
+     }
+     ```
+     Only the **changed** widgets are included — not the entire canvas.
+  2. Resets the baseline snapshot to the current state → button disables immediately.
+  3. Appends a confirmation message in the chat canvas.
+  4. Also emits on `getLogsEvent`: `{ timestamp, direction: "sent", event, payload, type: "save" }`.
+
+### Receive — AI response
+
+Listens on `receiveResponseEvent`. Accepts:
+- A plain string.
+- An object with a `markdown`, `response`, or `text` key.
+- Falls back to `JSON.stringify(data)`.
+
+The response is rendered in the chat canvas by `MarkdownRenderer` (headings, bold, italic, inline code, fenced code blocks, bullet lists — no `dangerouslySetInnerHTML`).
+
+Also emits on `getLogsEvent`: `{ timestamp, direction: "received", event, payload: { text } }`.
+
+### Logging (`getLogsEvent`)
+
+Every user interaction is forwarded to the backend on `getLogsEvent` (default `"aiLogs"`). Shape:
+
+```json
+{ "timestamp": "2026-11-13T12:38:34.965Z", "direction": "sent"|"received", "event": "<eventName>", "payload": { ... } }
+```
+
+The backend can persist these logs however it wishes — to a file, database, or forward to a monitoring service. The widget never stores logs itself.
+
+### `aiSelectionStore`
+
+A module-level store (compatible with `useSyncExternalStore`) shared between `UI.WidgetListPanel` (tick checkboxes) and `UI.AIWidget` (reads ticked IDs). Public API:
+
+```js
+import { aiSelectionStore } from "@devcrish/headwind";
+aiSelectionStore.toggle(id);       // toggle one widget's ticked state
+aiSelectionStore.setTicked(id, bool);
+aiSelectionStore.getTickedIds();   // returns stable array ref
+aiSelectionStore.isTicked(id);
+aiSelectionStore.selectAll(ids);
+aiSelectionStore.clear();
+aiSelectionStore.subscribe(cb);    // for useSyncExternalStore
+```
+
+### Change-detection implementation detail
+
+`computeChangedWidgets()` is called on every render (it reads from `store.getElements()` which is a synchronous getter — no effect needed). It diffs `toWidgetJSX(el)` for each element against the snapshot stored in `initialElementsRef`. A widget is "changed" if:
+- It has no snapshot entry (newly added via socket/MQTT), **or**
+- Its current JSX string differs from the snapshot JSX string (covers position, size, props, flags).
+
+This means **any change the InspectorPanel would reflect** is also detected here, with no manual diffing of individual fields.
+
+### Example usage
+
+```jsx
+<UI.AIWidget
+  socketUrl="http://localhost:5000"
+  sendPromptEvent="aiPrompt"
+  receiveResponseEvent="aiResponse"
+  saveEvent="aiSave"
+  getLogsEvent="aiLogs"
+  defaultPosition={{ x: 20, y: 440 }}
+  title="Layout AI"
+/>
+```
+
+Backend (Python / Socket.IO) listens on `"aiPrompt"` and `"aiSave"`, detects the fixed save prompt string, edits `App.jsx`, and replies on `"aiResponse"`. It can also persist all logs received on `"aiLogs"`.
+
+> [!IMPORTANT]
+> `UI.AIWidget` must be placed **outside** `<UI.Canvas>` (like `UI.MasterPanel` and `UI.ExportPanel`). It uses `useUIContext()` to read the store, so it must still be inside `<UIProvider>`.
+
+> [!NOTE]
+> The JSX strings sent by the widget (`toWidgetJSX`) are the same format shown by `UI.InspectorPanel`'s "Copy JSX" button and described in `docs/08-jsx-to-socket-payload-guide.md`. The backend can parse them directly or use them as a readable diff for an LLM.
+
+## 6.22 UI.InspectorPanel — VS Code Style Color Palette & Styling
+
+`UI.InspectorPanel` provides live geometry inspection, component prop inspection, and color editing for the currently selected canvas widget.
+
+### Features
+1. **Inline Color Squares**:
+   Beside both `color` and `background-color` fields, a small 13×13 px square displays the live shade of that color. If the color is unset or transparent, it displays a checkerboard pattern.
+2. **VS Code Style Palette Popover**:
+   Clicking the small color square opens an interactive styling palette directly beneath the field:
+   - **Native color picker**: Click the color input box to open the system eyedropper and spectrum picker.
+   - **Hex text input**: Type or paste any CSS color string (`#hex`, `rgb(...)`, `hsl(...)`, or named color).
+   - **Clear button**: Removes the color property from the widget and JSX.
+   - **Swatches matrix**: 27 standard VS Code / Tailwind CSS swatches organized in 3 rows (neutrals, vibrant primaries, deep tones) for instant one-click selection.
+3. **Synchronized JSX & Live Updates**:
+   Changing a color updates the widget in the canvas immediately and updates `toWidgetJSX(el)`.
+   - The user can copy the updated snippet from InspectorPanel's "Copy JSX" button.
+   - `UI.AIWidget` automatically detects the JSX change and enables the **Save UI Changes to App.jsx** button. Saving sends the updated JSX containing the new `color="..."` or `backgroundColor="..."` attributes over Socket.IO.
+
+
+>>>>>>> Version2.1.1

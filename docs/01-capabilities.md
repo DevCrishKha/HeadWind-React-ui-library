@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿# 1. Capabilities and API Reference
+=======
+# 1. Capabilities and API Reference
+>>>>>>> Version2.1.1
 
 Everything a developer can do with `@devcrish/headwind` today (v0.1.0), with the exact props, hooks and return shapes.
 
@@ -34,12 +38,22 @@ Everything a developer can do with `@devcrish/headwind` today (v0.1.0), with the
 |--------|----------------------|---------|
 | `UI.Text` | 240 x 40 | Configurable text. |
 | `UI.Button` | 140 x 44 | Clickable button, variants, loading, disabled. |
+<<<<<<< HEAD
+=======
+| `UI.IconButton` | 44 x 44 | Clickable icon button with built-in designs (burger menu, 3dot, meatball, close, plus, etc.). |
+>>>>>>> Version2.1.1
 | `UI.ParentPanel` | 800 x 500 | Container supporting nested, independently editable child widgets with configurable resize modes (clip, fixed, reflow). |
 | `UI.Canvas` | n/a | The coordinate system (not a draggable widget). |
 | `UI.MasterPanel` | n/a | Floating panel with three master switches. |
 | `UI.ExportPanel` | n/a | Floating panel to copy JSON / JSX. |
+<<<<<<< HEAD
 | `UI.InspectorPanel` | n/a | Floating panel to inspect selected widget props, geometry and copy JSX. |
 | `UI.WidgetListPanel` | n/a | Draggable, collapsible panel to view all widgets by ID and type, and toggle visibility via eye icon. |
+=======
+| `UI.InspectorPanel` | n/a | Floating panel to inspect selected widget props, geometry, edit color & background-color via VS Code style color squares and palette popover, and copy JSX. |
+| `UI.WidgetListPanel` | n/a | Draggable, collapsible panel to view all widgets by ID and type, and toggle visibility via eye icon. |
+| `UI.AIWidget` | n/a | Floating AI chat panel. Send prompts with targeted widget JSX over Socket.IO; Save button (enabled only when UI has changed) emits only the changed widgets as JSX strings; every interaction is also logged on `getLogsEvent`. |
+>>>>>>> Version2.1.1
 
 Everything else in the original specification (Heading, Image, Metric, charts, tables, forms, navigation, maps, etc.) is **not built yet**. See `02-requirements-and-architecture.md`.
 

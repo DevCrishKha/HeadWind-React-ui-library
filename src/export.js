@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿import { getWidgetInfo, getAllWidgetInfo } from "./registry.js";
+=======
+import { getWidgetInfo, getAllWidgetInfo } from "./registry.js";
+>>>>>>> Version2.1.1
 import { layoutPropsReference, layoutPropsExtraReference, layoutCallbacksReference, hooksReference } from "./reference.js";
 
 const COORDINATES =

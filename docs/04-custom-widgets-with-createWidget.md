@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿# 4. Creating a Custom Widget with `createWidget`
+=======
+# 4. Creating a Custom Widget with `createWidget`
+>>>>>>> Version2.1.1
 
 Use this when **you, as an app developer**, have your own React component and want it to behave like a library widget: auto-positioned, draggable, resizable, inspectable, exportable and deployable. You do **not** modify the library.
 

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿import { useEffect, useState } from "react";
+=======
+import { useEffect, useState } from "react";
+>>>>>>> Version2.1.1
 import { UI, UIProvider, useUIElement } from "@devcrish/headwind";
 
 import Clock from "./Clock.jsx";
@@ -55,7 +59,11 @@ export default function FullDemo() {
         <UI.Canvas deploy={pageDeploy} height={460} style={{ borderRadius: 10, boxShadow: "0 1px 3px rgba(0,0,0,.12)" }}>
           {/* 1-2. No layout props at all: sensible size, placed automatically one below the other. */}
           <UI.Text id="heading" text="Weather Dashboard" fontSize={26} fontWeight={700} deploy={headingDeploy} />
+<<<<<<< HEAD
           <UI.Text id="temperature" text={`Temperature: ${temp} Â°C`} />
+=======
+          <UI.Text id="temperature" text={`Temperature: ${temp} °C`} />
+>>>>>>> Version2.1.1
           <UI.Button text="Click me" onClick={() => setClicks((c) => c + 1)} />
 
           {/* 4. Override only one thing. Here only x is set, y is still automatic. */}

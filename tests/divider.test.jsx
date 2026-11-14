@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 ﻿import { describe, it, expect, vi } from "vitest";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { UI, UIProvider, useUILayout } from "@devcrish/headwind";
 
 // â”€â”€â”€ Helpers (copied from library.test.jsx) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+=======
+import { describe, it, expect, vi } from "vitest";
+import { render, fireEvent, screen } from "@testing-library/react";
+import { UI, UIProvider, useUILayout } from "@devcrish/headwind";
+
+// ─── Helpers (copied from library.test.jsx) ──────────────────────────────────
+>>>>>>> Version2.1.1
 function setup(children, { config, deploy = false } = {}) {
   let api;
   function Probe() {
@@ -31,7 +39,11 @@ const drag = (el, dx, dy, from = { x: 100, y: 100 }) => {
   fireEvent.pointerUp(window, { clientX: from.x + dx, clientY: from.y + dy });
 };
 
+<<<<<<< HEAD
 describe("UI.Divider â€” Basic rendering and defaults", () => {
+=======
+describe("UI.Divider — Basic rendering and defaults", () => {
+>>>>>>> Version2.1.1
   it("renders with no layout props and gets its default size (300x12)", () => {
     const t = setup(<UI.Divider id="d1" />);
     expect(t.geo("d1").size).toEqual({ width: 300, height: 12 });
@@ -132,7 +144,11 @@ describe("UI.Divider â€” Basic rendering and defaults", () => {
   });
 });
 
+<<<<<<< HEAD
 describe("UI.Divider â€” Resizing touching UI.ParentPanel sections", () => {
+=======
+describe("UI.Divider — Resizing touching UI.ParentPanel sections", () => {
+>>>>>>> Version2.1.1
   it("resizes two horizontally adjacent ParentPanels when dragging a vertical Divider", () => {
     const t = setup(
       <>
@@ -554,7 +570,11 @@ describe("UI.Divider â€” Resizing touching UI.ParentPanel sections", () => 
   });
 });
 
+<<<<<<< HEAD
 describe("UI.Divider â€” Linking via panel properties (dividerId, resizeAxis, dividerPosition, dividerEdge)", () => {
+=======
+describe("UI.Divider — Linking via panel properties (dividerId, resizeAxis, dividerPosition, dividerEdge)", () => {
+>>>>>>> Version2.1.1
   it("links panels using dividerId, resizeAxis, dividerPosition, dividerEdge in deployed mode", () => {
     const t = setup(
       <>

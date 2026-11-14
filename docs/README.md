@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿# @devcrish/headwind: Documentation Index
+=======
+# @devcrish/headwind: Documentation Index
+>>>>>>> Version2.1.1
 
 This folder documents the whole library as it exists today (version 0.1.0). It is written so that a developer or an AI agent who has never seen the project can understand it, extend it, and avoid breaking it.
 

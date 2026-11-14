@@ -1,5 +1,9 @@
 import { useState, useRef, useCallback, useSyncExternalStore } from "react";
 import { useUIContext } from "../context.js";
+<<<<<<< HEAD
+=======
+import { aiSelectionStore } from "./aiSelectionStore.js";
+>>>>>>> Version2.1.1
 
 /* ───────────────────────────────────────────────────────
    WidgetListPanel  –  a special panel (like MasterPanel
@@ -268,6 +272,13 @@ export function WidgetListPanel({ style, defaultPosition = { x: 16, y: 70 } }) {
 /* ── Single widget row ─────────────────────────────── */
 function WidgetRow({ el, isSelected, onToggle, onSelect }) {
   const [hovered, setHovered] = useState(false);
+<<<<<<< HEAD
+=======
+  const isTicked = useSyncExternalStore(
+    aiSelectionStore.subscribe,
+    () => aiSelectionStore.isTicked(el.id)
+  );
+>>>>>>> Version2.1.1
 
   return (
     <div
@@ -292,6 +303,39 @@ function WidgetRow({ el, isSelected, onToggle, onSelect }) {
         transition: "background 0.15s, opacity 0.15s",
       }}
     >
+<<<<<<< HEAD
+=======
+      {/* AI tick checkbox */}
+      <button
+        data-testid={`ui-widget-tick-${el.id}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          aiSelectionStore.toggle(el.id);
+        }}
+        title={isTicked ? "Untick for AI" : "Tick for AI context"}
+        style={{
+          background: isTicked ? "rgba(56, 189, 248, 0.2)" : "transparent",
+          border: `1px solid ${isTicked ? COLORS.accent : COLORS.border}`,
+          borderRadius: 3,
+          width: 15,
+          height: 15,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          padding: 0,
+          color: COLORS.accent,
+          flexShrink: 0,
+        }}
+      >
+        {isTicked && (
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        )}
+      </button>
+
+>>>>>>> Version2.1.1
       {/* eye toggle button */}
       <button
         data-testid={`ui-widget-eye-${el.id}`}

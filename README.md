@@ -1,6 +1,8 @@
-﻿# HeadWind React-UI-Library
+﻿HeadWind React-UI-Library
 
 Install the library `npm i @devcrish/headwind`.
+
+# @devcrish/headwind Version2.1.1
 
 React widgets that you can drag, resize and place in your browser. Create UI in react like a complete UI/UX engine built-in to your react library. 
 * Just import the Widget you want from the library
@@ -12,6 +14,8 @@ React widgets that you can drag, resize and place in your browser. Create UI in 
 * And there you have a webpage.
 * You can now build the project `npm run build` and serve your dist/ folder.
 * Import the library then open it inside your node_modules/ and check `src/widgets` Scroll down to see all the properties of a widget.
+* If you want to see the props of each widget, you must open the `src/widgets/` folder and look at that widget. The properties list is at the end of the JSX file.
+
 
 ### Features & Power
 1. The module accepts json data from the backend to update the UI. `{"id":"< Widget's ID >", "text":"Hello World!", "Color":"Red"}`
@@ -42,6 +46,8 @@ Workflow: drag/resize -> read the overlay or press **Copy JSX** -> paste -> add 
 `id`, `position` ("auto" or `{x?, y?}`), `size` (`{width?, height?}`), `isDraggable`, `isResizable`, `deploy`, `hidden`, `solid`,
 `onPositionChange`, `onSizeChange`, `onLayoutChange`.
 
+> **Widget-specific properties:** If you want to see the props of each widget, you must open the `src/widgets/` folder and look at that widget. The properties list is at the end of the JSX file.
+
 ## Precedence (later wins)
 1. Built-in defaults (`defaultUIConfig`, then the widget's own, e.g. Button is 140x44)
 2. `<UIProvider config={...}>`
@@ -62,7 +68,8 @@ Workflow: drag/resize -> read the overlay or press **Copy JSX** -> paste -> add 
 - `<UI.MasterPanel />`: checkboxes for **Dragging**, **Resizing** and **Deploy whole page**. Dragging/Resizing OFF stops every widget; ON never overrides a widget's own `isDraggable={false}` / `isResizable={false}`. Deploy hides all editing tools but the panel stays so you can switch back. If you deploy in code with `<UI.Canvas deploy>`, the panel hides itself. Prop: `position` (`"top-right"` default, `"top-left"`, `"bottom-right"`, `"bottom-left"`).
 - `<UI.ExportPanel />`: copy layout as JSON or JSX. Hidden when the page is deployed.
 - `<UI.InspectorPanel />`: inspects the selected widget's properties, geometry, and layout flags. Includes a **Show JSX** toggle and **Copy JSX** button to hardcode the widget into React code. Prop: `position` (`"bottom-left"` default, `"bottom-right"`, `"top-left"`, `"top-right"`). Hidden when the page is deployed.
-- `<UI.WidgetListPanel />`: lists all canvas widgets by ID and type in a draggable, collapsible panel. Click the eye icon next to any widget to toggle its visibility (appear/disappear, like Blender's outliner). Collapsible so only "Widget List" and the drag handle remain visible, and draggable anywhere on the page. Hidden when the page is deployed.
+- `<UI.WidgetListPanel />`: lists all canvas widgets by ID and type in a draggable, collapsible panel. Click the eye icon next to any widget to toggle its visibility (appear/disappear, like Blender's outliner). Features a tick checkbox beside each widget to target specific widgets for the AI Widget. Collapsible so only "Widget List" and the drag handle remain visible, and draggable anywhere on the page. Hidden when the page is deployed.
+- `<UI.AIWidget />` (or `<UI.AIPanel />`): floating AI assistant panel with a markdown output canvas, textarea prompt, Send button, and a bottom "Save UI Changes to App.jsx" button. Sends ticked widgets with their geometry and prompt over Socket.IO (`sendPromptEvent`), receives markdown answers over Socket.IO (`receiveResponseEvent`), and emits changed widgets on Save. Props: `socketUrl`, `socket`, `sendPromptEvent` (default: `"aiPrompt"`), `receiveResponseEvent` (default: `"aiResponse"`), `saveEvent`, `defaultPosition`. Hidden when the page is deployed.
 
 ## Canvas size
 - **Full page (default)**: with no `width`/`height` the canvas covers the whole browser page, edge to edge, before and after deploy. It is pinned to the top-left of the page, so padding or centering from your other CSS cannot leave gaps. If a widget is lower or further right than the screen, the canvas grows and the page scrolls normally.
@@ -152,10 +159,33 @@ Container widget (`UI.ParentPanel`) that supports independently draggable and re
 - **Nested ParentPanels:** Arbitrarily nest ParentPanels with recursive root coordinate calculation.
 - **Geometry API:** `useUIElement(id)` and export report `position` (parent-relative), `parentRelativePosition`, `rootPosition`, and `parentId`.
 
+## `UI.IconButton` (icon & action buttons)
+Clickable icon button widget (`UI.IconButton`) with built-in designs for menus, options, and actions:
+```jsx
+{/* Burger menu button */}
+<UI.IconButton id="menu-btn" design="burger" onClick={toggleMenu} />
+
+{/* 3-dot vertical (kebab) menu */}
+<UI.IconButton id="options-btn" design="3dot" variant="ghost" />
+
+{/* 3-dot horizontal (meatball) menu */}
+<UI.IconButton id="more-btn" design="dots-horizontal" />
+
+{/* With optional text label next to the icon */}
+<UI.IconButton id="labeled-menu" design="burger" text="Menu" />
+```
+- **Supported designs (`design` or `icon`):**
+  - `"burger"` (or `"menu"`, `"hamburger"`): 3 horizontal menu bars.
+  - `"3dot"` (or `"dots-vertical"`, `"kebab"`): 3 vertical dots.
+  - `"dots-horizontal"` (or `"meatball"`): 3 horizontal dots.
+  - `"close"` (or `"x"`): Close cross icon.
+  - `"plus"`: Plus icon.
+  - `"minus"`, `"check"`, `"settings"`, `"search"`.
+- **Props:** `design` (or `icon`), `text`, `children`, `variant` (`"primary"`, `"secondary"`, `"outline"`, `"ghost"`, `"danger"`), `iconSize` (default 20), `borderRadius` (default 8), `disabled`, `loading`, `onClick`, `color`, `backgroundColor`, `title`, `style`, `className`.
+- **Defaults:** `{ width: 44, height: 44 }` default size.
+
 ## Coordinates and limits
 - Pixels from the canvas top-left for root widgets, or from parent content top-left for nested widgets in a `UI.ParentPanel`. Dragging uses pointer movement, so page scrolling does not change the values.
 - One canvas per `UIProvider`.
 - Fixed pixel positions are **not responsive** unless wrapped in a `UI.ParentPanel` with `childResizeMode="reflow"`.
 - A press that moves less than 4px is a click, so buttons work in edit mode too.
-
-**The library is not completely ready for production as security & authentication between the frontend & backend are still needed to be added as I intend the users to use the built-in socketIO & MQTT Hooks in the Canvas. You can edit the `useSocketUI.js` & `useMqttUI.js` to add your own security & authentication yourself.**

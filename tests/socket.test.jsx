@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿import { describe, it, expect, vi } from "vitest";
+=======
+import { describe, it, expect, vi } from "vitest";
+>>>>>>> Version2.1.1
 import { render, act, fireEvent } from "@testing-library/react";
 import { UI, UIProvider, useUILayout, useSocketUI, createWidget } from "@devcrish/headwind";
 
@@ -322,7 +326,11 @@ describe("Socket.IO UI Synchronization", () => {
 
     expect(t.geo("drag-me").position).toEqual({ x: 200, y: 200 });
 
+<<<<<<< HEAD
     // User drags the widget â€” it must actually move
+=======
+    // User drags the widget — it must actually move
+>>>>>>> Version2.1.1
     const el = t.widget("drag-me");
     fireEvent.pointerDown(el, { clientX: 200, clientY: 200, button: 0 });
     fireEvent.pointerMove(window, { clientX: 250, clientY: 260 });

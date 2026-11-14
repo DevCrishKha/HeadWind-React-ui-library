@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿import { describe, it, expect, vi } from "vitest";
+=======
+import { describe, it, expect, vi } from "vitest";
+>>>>>>> Version2.1.1
 import { render, fireEvent } from "@testing-library/react";
 import { UI, UIProvider, useUILayout } from "@devcrish/headwind";
 

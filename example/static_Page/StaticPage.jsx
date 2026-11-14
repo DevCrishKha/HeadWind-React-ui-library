@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿import { useState } from "react";
+=======
+import { useState } from "react";
+>>>>>>> Version2.1.1
 import { UI } from "@devcrish/headwind";
 
 /**
@@ -31,9 +35,15 @@ export default function StaticPage({ onBack }) {
           "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
+<<<<<<< HEAD
       {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           TOP CONTROL BAR (Clean, subtle mode toggle)
       â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+=======
+      {/* ─────────────────────────────────────────────────────────────
+          TOP CONTROL BAR (Clean, subtle mode toggle)
+      ───────────────────────────────────────────────────────────── */}
+>>>>>>> Version2.1.1
       <UI.ParentPanel
         id="topBar"
         position={{ x: 60, y: 16 }}
@@ -80,16 +90,26 @@ export default function StaticPage({ onBack }) {
             position={{ x: 1025, y: 4 }}
             size={{ width: 120, height: 32 }}
             variant="ghost"
+<<<<<<< HEAD
             text="â† Return to App"
+=======
+            text="← Return to App"
+>>>>>>> Version2.1.1
             onClick={onBack}
             style={{ fontSize: "12px", color: "#0284c7" }}
           />
         )}
       </UI.ParentPanel>
 
+<<<<<<< HEAD
       {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           NAVIGATION HEADER
       â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+=======
+      {/* ─────────────────────────────────────────────────────────────
+          NAVIGATION HEADER
+      ───────────────────────────────────────────────────────────── */}
+>>>>>>> Version2.1.1
       <UI.ParentPanel
         id="headerNav"
         position={{ x: 60, y: 68 }}
@@ -181,9 +201,15 @@ export default function StaticPage({ onBack }) {
         />
       </UI.ParentPanel>
 
+<<<<<<< HEAD
       {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           HERO SECTION WITH LARGE HOSPITAL BACKGROUND IMAGE
       â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+=======
+      {/* ─────────────────────────────────────────────────────────────
+          HERO SECTION WITH LARGE HOSPITAL BACKGROUND IMAGE
+      ───────────────────────────────────────────────────────────── */}
+>>>>>>> Version2.1.1
       {/* Large hospital image as background */}
       <UI.Img
         id="heroBgImage"
@@ -212,7 +238,11 @@ export default function StaticPage({ onBack }) {
           position={{ x: 28, y: 22 }}
           size={{ width: 230, height: 28 }}
           variant="primary"
+<<<<<<< HEAD
           text="âœ¦ NATIONALLY RANKED HOSPITAL"
+=======
+          text="✦ NATIONALLY RANKED HOSPITAL"
+>>>>>>> Version2.1.1
           fontSize={11}
           fontWeight={700}
           backgroundColor="#e0f2fe"
@@ -270,9 +300,15 @@ export default function StaticPage({ onBack }) {
         />
       </UI.ParentPanel>
 
+<<<<<<< HEAD
       {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           SECTION: SPECIALIZED MEDICAL SERVICES (3 CLEAN CARDS)
       â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+=======
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION: SPECIALIZED MEDICAL SERVICES (3 CLEAN CARDS)
+      ───────────────────────────────────────────────────────────── */}
+>>>>>>> Version2.1.1
       <UI.Badge
         id="servicesBadge"
         position={{ x: 60, y: 660 }}
@@ -345,7 +381,11 @@ export default function StaticPage({ onBack }) {
           size={{ width: 160, height: 38 }}
           variant="ghost"
           color="#0284c7"
+<<<<<<< HEAD
           text="Find a Clinic â†’"
+=======
+          text="Find a Clinic →"
+>>>>>>> Version2.1.1
           onClick={() =>
             alert("Showing nearest HopeWell Primary Care clinics...")
           }
@@ -397,7 +437,11 @@ export default function StaticPage({ onBack }) {
           size={{ width: 170, height: 38 }}
           variant="ghost"
           color="#e11d48"
+<<<<<<< HEAD
           text="Heart Specialists â†’"
+=======
+          text="Heart Specialists →"
+>>>>>>> Version2.1.1
           onClick={() => alert("Exploring Cardiology & Vascular team...")}
           style={{ fontSize: "14px", fontWeight: "600" }}
         />
@@ -447,15 +491,25 @@ export default function StaticPage({ onBack }) {
           size={{ width: 160, height: 38 }}
           variant="ghost"
           color="#059669"
+<<<<<<< HEAD
           text="Book a Scan â†’"
+=======
+          text="Book a Scan →"
+>>>>>>> Version2.1.1
           onClick={() => alert("Opening Diagnostic Imaging schedule...")}
           style={{ fontSize: "14px", fontWeight: "600" }}
         />
       </UI.ParentPanel>
 
+<<<<<<< HEAD
       {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           SECTION: APPOINTMENT & CONTACT BANNER
       â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+=======
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION: APPOINTMENT & CONTACT BANNER
+      ───────────────────────────────────────────────────────────── */}
+>>>>>>> Version2.1.1
       <UI.ParentPanel
         id="contactBanner"
         position={{ x: 60, y: 1070 }}
@@ -514,9 +568,15 @@ export default function StaticPage({ onBack }) {
         />
       </UI.ParentPanel>
 
+<<<<<<< HEAD
       {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           FOOTER
       â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+=======
+      {/* ─────────────────────────────────────────────────────────────
+          FOOTER
+      ───────────────────────────────────────────────────────────── */}
+>>>>>>> Version2.1.1
       <UI.Divider
         id="footerDivider"
         position={{ x: 60, y: 1205 }}
@@ -546,7 +606,11 @@ export default function StaticPage({ onBack }) {
         id="footerAddress"
         position={{ x: 60, y: 1266 }}
         size={{ width: 550, height: 24 }}
+<<<<<<< HEAD
         text="742 Medical Center Blvd, Suite 100, New York, NY 10021 â€¢ (800) 555-0199"
+=======
+        text="742 Medical Center Blvd, Suite 100, New York, NY 10021 • (800) 555-0199"
+>>>>>>> Version2.1.1
         color="#64748b"
         fontSize={13}
       />
@@ -554,7 +618,11 @@ export default function StaticPage({ onBack }) {
         id="footerCopy"
         position={{ x: 60, y: 1294 }}
         size={{ width: 420, height: 22 }}
+<<<<<<< HEAD
         text="Â© 2026 HopeWell Health System. All rights reserved."
+=======
+        text="© 2026 HopeWell Health System. All rights reserved."
+>>>>>>> Version2.1.1
         color="#94a3b8"
         fontSize={12}
       />
@@ -565,14 +633,24 @@ export default function StaticPage({ onBack }) {
         position={{ x: 885, y: 1232 }}
         size={{ width: 235, height: 28 }}
         variant="success"
+<<<<<<< HEAD
         text="â— EMERGENCY DEPT: OPEN 24/7"
+=======
+        text="● EMERGENCY DEPT: OPEN 24/7"
+>>>>>>> Version2.1.1
         fontSize={11}
         fontWeight={700}
       />
 
+<<<<<<< HEAD
       {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           STUDIO EDIT TOOLS (Only visible when user toggles edit mode)
       â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+=======
+      {/* ─────────────────────────────────────────────────────────────
+          STUDIO EDIT TOOLS (Only visible when user toggles edit mode)
+      ───────────────────────────────────────────────────────────── */}
+>>>>>>> Version2.1.1
       {!deployMode && <UI.MasterPanel position="top-right" />}
       {!deployMode && <UI.ExportPanel />}
       {!deployMode && <UI.InspectorPanel position="bottom-left" />}

@@ -1,6 +1,6 @@
 ﻿{
   "name": "@devcrish/headwind",
-  "version": "0.1.0",
+  "version": "2.1.1",
   "description": "React widgets you can drag, resize and measure in the browser, then hardcode and deploy.",
   "type": "module",
   "main": "./dist/index.cjs",

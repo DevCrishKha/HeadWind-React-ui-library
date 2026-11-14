@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿import { createContext, useContext } from "react";
+=======
+import { createContext, useContext } from "react";
+>>>>>>> Version2.1.1
 
 export const UIContext = createContext(null);
 

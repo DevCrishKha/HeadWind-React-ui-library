@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿import { useEffect, useState } from "react";
+=======
+import { useEffect, useState } from "react";
+>>>>>>> Version2.1.1
 import { createWidget } from "@devcrish/headwind";
 
 // 12. A custom React component turned into a layout-aware widget with createWidget.

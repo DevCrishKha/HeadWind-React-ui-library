@@ -20,6 +20,15 @@ const btn = {
   cursor: "pointer",
 };
 
+<<<<<<< HEAD
+=======
+const PALETTE_SWATCHES = [
+  ["#ffffff", "#f8fafc", "#e2e8f0", "#94a3b8", "#64748b", "#334155", "#1e293b", "#0f172a", "#000000"],
+  ["#ef4444", "#f97316", "#f59e0b", "#10b981", "#06b6d4", "#3b82f6", "#6366f1", "#a855f7", "#ec4899"],
+  ["#991b1b", "#c2410c", "#b45309", "#047857", "#0e7490", "#1d4ed8", "#4338ca", "#7e22ce", "#be185d"],
+];
+
+>>>>>>> Version2.1.1
 export function toWidgetJSX(el) {
   if (!el) return "";
   const info = getWidgetInfo(el.type);
@@ -72,6 +81,10 @@ export function InspectorPanel({ position = "bottom-left", style }) {
   const { store } = useUIContext();
   const [showJSX, setShowJSX] = useState(false);
   const [note, setNote] = useState("");
+<<<<<<< HEAD
+=======
+  const [openColorField, setOpenColorField] = useState(null); // "color" | "backgroundColor" | null
+>>>>>>> Version2.1.1
 
   const pageDeployed = useSyncExternalStore(store.subscribe, store.getPageDeployed);
   const selectedId = useSyncExternalStore(store.subscribe, store.getSelectedId);
@@ -93,7 +106,15 @@ export function InspectorPanel({ position = "bottom-left", style }) {
   };
 
   const info = el ? getWidgetInfo(el.type) : null;
+<<<<<<< HEAD
   const contentProps = el?.props ? Object.entries(el.props).filter(([k, v]) => k !== "children" && v !== undefined) : [];
+=======
+  const contentProps = el?.props
+    ? Object.entries(el.props).filter(
+        ([k, v]) => k !== "children" && v !== undefined && k !== "color" && k !== "backgroundColor"
+      )
+    : [];
+>>>>>>> Version2.1.1
 
   return (
     <div
@@ -190,6 +211,129 @@ export function InspectorPanel({ position = "bottom-left", style }) {
             </div>
           )}
 
+<<<<<<< HEAD
+=======
+          {/* ── VS Code Style Colors Section ── */}
+          <div data-testid="ui-inspector-colors" style={{ borderTop: "1px solid #1e293b", paddingTop: 4, marginTop: 2 }}>
+            <div style={{ color: "#94a3b8", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>
+              Colors
+            </div>
+
+            {[
+              { label: "color", key: "color" },
+              { label: "background-color", key: "backgroundColor" },
+            ].map(({ label, key }) => {
+              const val = el?.props?.[key] || "";
+              const isOpen = openColorField === key;
+              const hasVal = Boolean(val && val !== "transparent");
+
+              return (
+                <div key={key} style={{ marginBottom: 4 }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: 11 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                      {/* Small square showing the shade of the color */}
+                      <button
+                        type="button"
+                        data-testid={`ui-color-square-${key}`}
+                        title={`Click to open palette for ${label}`}
+                        onClick={() => setOpenColorField(isOpen ? null : key)}
+                        style={{
+                          width: 13,
+                          height: 13,
+                          padding: 0,
+                          borderRadius: 2,
+                          border: "1px solid #475569",
+                          backgroundColor: hasVal ? val : "transparent",
+                          backgroundImage: !hasVal
+                            ? "linear-gradient(45deg, #334155 25%, transparent 25%), linear-gradient(-45deg, #334155 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #334155 75%), linear-gradient(-45deg, transparent 75%, #334155 75%)"
+                            : "none",
+                          backgroundSize: "6px 6px",
+                          backgroundPosition: "0 0, 0 3px, 3px -3px, -3px 0px",
+                          cursor: "pointer",
+                          boxShadow: isOpen ? "0 0 0 2px #38bdf8" : "none",
+                          flexShrink: 0,
+                        }}
+                      />
+                      <span style={{ color: "#94a3b8" }}>{label}:</span>
+                    </div>
+                    <span style={{ fontFamily: "ui-monospace, monospace", color: hasVal ? "#a5f3fc" : "#64748b" }}>
+                      {val || "(none)"}
+                    </span>
+                  </div>
+
+                  {/* Expandable VS Code Style Color Palette */}
+                  {isOpen && (
+                    <div
+                      data-testid={`ui-color-palette-${key}`}
+                      style={{
+                        marginTop: 4,
+                        marginBottom: 4,
+                        padding: 6,
+                        background: "#020617",
+                        border: "1px solid #334155",
+                        borderRadius: 6,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 5,
+                      }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                        <input
+                          type="color"
+                          data-testid={`ui-color-picker-${key}`}
+                          value={hasVal && val.startsWith("#") && val.length === 7 ? val : "#38bdf8"}
+                          onChange={(e) => store.applySocketUpdates({ id: el.id, [key]: e.target.value })}
+                          style={{ width: 22, height: 22, padding: 0, border: "1px solid #334155", borderRadius: 3, cursor: "pointer", background: "none" }}
+                        />
+                        <input
+                          type="text"
+                          data-testid={`ui-color-input-${key}`}
+                          placeholder="#hex or css color"
+                          value={val}
+                          onChange={(e) => store.applySocketUpdates({ id: el.id, [key]: e.target.value || undefined })}
+                          style={{
+                            flex: 1,
+                            background: "#0b1120",
+                            border: "1px solid #334155",
+                            borderRadius: 4,
+                            color: "#a5f3fc",
+                            padding: "2px 6px",
+                            fontSize: 11,
+                            fontFamily: "ui-monospace, monospace",
+                          }}
+                        />
+                        <button
+                          type="button"
+                          data-testid={`ui-color-clear-${key}`}
+                          title="Clear color"
+                          onClick={() => store.applySocketUpdates({ id: el.id, [key]: undefined })}
+                          style={{ fontSize: 10, background: "#1e293b", border: "1px solid #334155", color: "#94a3b8", borderRadius: 4, padding: "2px 5px", cursor: "pointer" }}
+                        >
+                          Clear
+                        </button>
+                      </div>
+
+                      {/* Swatches Matrix */}
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(9, 1fr)", gap: 2 }}>
+                        {PALETTE_SWATCHES.flat().map((c) => (
+                          <button
+                            key={c}
+                            type="button"
+                            title={c}
+                            data-testid={`ui-swatch-${c.replace("#", "")}`}
+                            onClick={() => store.applySocketUpdates({ id: el.id, [key]: c })}
+                            style={{ width: "100%", height: 13, background: c, border: val === c ? "2px solid #38bdf8" : "1px solid rgba(255,255,255,0.12)", borderRadius: 2, cursor: "pointer" }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+>>>>>>> Version2.1.1
           {info?.meta?.description && (
             <div style={{ color: "#64748b", fontSize: 11, borderTop: "1px solid #1e293b", paddingTop: 4 }}>
               {info.meta.description}

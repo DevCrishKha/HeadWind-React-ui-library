@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿# 7. Pitfalls, Gotchas and Known Limitations
+=======
+# 7. Pitfalls, Gotchas and Known Limitations
+>>>>>>> Version2.1.1
 
 What can break if the library is used wrongly, and behaviours that look like bugs but are current behaviour. Items marked **[verified]** were reproduced by running code against the library. Items marked **[from code]** are derived from reading the source. Items marked **[untested]** are expected from how browsers behave and have not been tried.
 

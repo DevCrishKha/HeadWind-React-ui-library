@@ -1,18 +1,34 @@
+<<<<<<< HEAD
 ﻿import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { UI, UIProvider, useUILayout } from "@devcrish/headwind";
 
 /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+=======
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent, act } from "@testing-library/react";
+import { UI, UIProvider, useUILayout } from "@devcrish/headwind";
+
+/* ──────────────────────────────────────────────────────
+>>>>>>> Version2.1.1
    WidgetListPanel tests
    
    This panel is a special component (like MasterPanel /
    InspectorPanel) that lists all widgets on the canvas
    and allows toggling their visibility with an eye icon.
+<<<<<<< HEAD
    â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 describe("WidgetListPanel", () => {
 
   // â”€â”€ Rendering â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+=======
+   ────────────────────────────────────────────────────── */
+
+describe("WidgetListPanel", () => {
+
+  // ── Rendering ──────────────────────────────────────
+>>>>>>> Version2.1.1
 
   it("renders with 'Widget List' title in the header", () => {
     render(
@@ -72,7 +88,11 @@ describe("WidgetListPanel", () => {
     expect(screen.getByTestId("ui-widget-list-empty").textContent).toContain("No widgets on the canvas");
   });
 
+<<<<<<< HEAD
   // â”€â”€ Deploy mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+=======
+  // ── Deploy mode ─────────────────────────────────────
+>>>>>>> Version2.1.1
 
   it("disappears when the Canvas has deploy prop", () => {
     render(
@@ -107,7 +127,11 @@ describe("WidgetListPanel", () => {
     expect(screen.queryByTestId("ui-widget-list-panel")).toBeNull();
   });
 
+<<<<<<< HEAD
   // â”€â”€ Collapse â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+=======
+  // ── Collapse ────────────────────────────────────────
+>>>>>>> Version2.1.1
 
   it("collapses and expands the body when the collapse button is clicked", () => {
     render(
@@ -150,7 +174,11 @@ describe("WidgetListPanel", () => {
     fireEvent.click(screen.getByTestId("ui-widget-list-collapse"));
 
     const panel = screen.getByTestId("ui-widget-list-panel");
+<<<<<<< HEAD
     // The panel should only contain the header â€” no body
+=======
+    // The panel should only contain the header — no body
+>>>>>>> Version2.1.1
     expect(panel.querySelector('[data-testid="ui-widget-list-body"]')).toBeNull();
     // But the header with 'Widget List' and drag handle is still there
     expect(screen.getByTestId("ui-widget-list-drag-handle")).toBeTruthy();
@@ -159,7 +187,11 @@ describe("WidgetListPanel", () => {
     expect(screen.queryByTestId("ui-widget-list-count")).toBeNull();
   });
 
+<<<<<<< HEAD
   // â”€â”€ Visibility toggle (eye icon) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+=======
+  // ── Visibility toggle (eye icon) ───────────────────
+>>>>>>> Version2.1.1
 
   it("toggles widget visibility (hidden flag) when the eye icon is clicked", () => {
     let layoutApi;
@@ -211,7 +243,11 @@ describe("WidgetListPanel", () => {
     expect(screen.getByTestId("ui-widget-eye-bar")).toBeTruthy();
   });
 
+<<<<<<< HEAD
   // â”€â”€ Selecting a widget â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+=======
+  // ── Selecting a widget ──────────────────────────────
+>>>>>>> Version2.1.1
 
   it("selects a widget when clicking on its row", () => {
     let layoutApi;
@@ -240,7 +276,11 @@ describe("WidgetListPanel", () => {
     expect(layoutApi.selectedId).toBe("w2");
   });
 
+<<<<<<< HEAD
   // â”€â”€ Dragging â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+=======
+  // ── Dragging ────────────────────────────────────────
+>>>>>>> Version2.1.1
 
   it("has position:fixed styling on the panel", () => {
     render(
@@ -299,7 +339,11 @@ describe("WidgetListPanel", () => {
     fireEvent.pointerUp(header, { pointerId: 1 });
   });
 
+<<<<<<< HEAD
   // â”€â”€ Widget count badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+=======
+  // ── Widget count badge ──────────────────────────────
+>>>>>>> Version2.1.1
 
   it("shows the widget count in the header when expanded", () => {
     render(
@@ -316,7 +360,11 @@ describe("WidgetListPanel", () => {
     expect(count.textContent).toBe("3");
   });
 
+<<<<<<< HEAD
   // â”€â”€ Multiple widget types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+=======
+  // ── Multiple widget types ───────────────────────────
+>>>>>>> Version2.1.1
 
   it("correctly lists widgets of various types", () => {
     render(
@@ -338,7 +386,11 @@ describe("WidgetListPanel", () => {
     expect(screen.getByTestId("ui-widget-type-hdg").textContent).toBe("Heading");
   });
 
+<<<<<<< HEAD
   // â”€â”€ Accepts style prop â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+=======
+  // ── Accepts style prop ──────────────────────────────
+>>>>>>> Version2.1.1
 
   it("accepts and applies extra style prop", () => {
     render(

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿import { UI } from "@devcrish/headwind";
+=======
+import { UI } from "@devcrish/headwind";
+>>>>>>> Version2.1.1
 // import Clock from "./Clock.jsx";
 // copy Clock.jsx from the example folder of the library into the directory of App.jsx, then import Clock from it
 
@@ -14,6 +18,29 @@ export default function App() {
       socketEvent="customSyncUI"
     >
       {/* Existing demo widgets */}
+<<<<<<< HEAD
+=======
+      <UI.IconButton
+        id="btn-burger"
+        design="burger"
+        position={{ x: 40, y: 80 }}
+        title="Menu"
+      />
+      <UI.IconButton
+        id="btn-kebab"
+        design="3dot"
+        variant="ghost"
+        position={{ x: 100, y: 80 }}
+        title="Options"
+      />
+      <UI.IconButton
+        id="btn-meatball"
+        design="dots-horizontal"
+        variant="outline"
+        position={{ x: 160, y: 80 }}
+        title="More"
+      />
+>>>>>>> Version2.1.1
       <UI.Text
         id="pinned"
         text="Hello Brother"
@@ -86,6 +113,15 @@ export default function App() {
       <UI.MasterPanel />
       <UI.InspectorPanel />
       <UI.WidgetListPanel />
+<<<<<<< HEAD
+=======
+      <UI.AIWidget
+        socketUrl="http://localhost:5000"
+        sendPromptEvent="aiPrompt"
+        receiveResponseEvent="aiResponse"
+        defaultPosition={{ x: 20, y: 440 }}
+      />
+>>>>>>> Version2.1.1
     </UI.Canvas>
   );
 }

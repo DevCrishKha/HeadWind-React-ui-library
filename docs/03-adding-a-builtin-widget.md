@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿# 3. Adding a New Built-in Widget to the Library
+=======
+# 3. Adding a New Built-in Widget to the Library
+>>>>>>> Version2.1.1
 
 This guide shows how to add a widget such as `UI.Heading` **inside the library** so that it is available as `UI.Heading` for every user. It is purely additive: it uses the public `createWidget` function and edits only `src/index.js` (adding lines). **No frozen file is touched** (see `DEVELOPMENT_RULES.md`).
 
@@ -206,6 +210,11 @@ Always provide **defaults for every content prop** so `<UI.Foo />` renders somet
 | UI.Icon | src/widgets/Icon.jsx | 40 x 40 | 1.2.0 |
 | UI.Img | src/widgets/Img.jsx | 300 x 200 | 1.2.0 |
 | UI.Divider | src/widgets/Divider.jsx | 300 x 12 | 1.2.1 |
+<<<<<<< HEAD
+=======
+| UI.IconButton | src/widgets/IconButton.jsx | 44 x 44 | 1.2.2 |
+| UI.AIWidget | src/widgets/AIWidget.jsx | n/a (panel) | 1.2.3 |
+>>>>>>> Version2.1.1
 
 ## 3.10 Checklist
 

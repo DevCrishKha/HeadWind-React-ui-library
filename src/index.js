@@ -18,12 +18,24 @@ import { RichText } from "./widgets/RichText.jsx";
 import { Icon, ICON_NAMES } from "./widgets/Icon.jsx";
 import { Img } from "./widgets/Img.jsx";
 import { Divider } from "./widgets/Divider.jsx";
+<<<<<<< HEAD
 
 // Everything is available as UI.Something ...
 export const UI = { Canvas, Text, Button, ParentPanel, ExportPanel, MasterPanel, InspectorPanel, WidgetListPanel, useSocketUI, useMqttUI, Heading, Paragraph, Label, Badge, RichText, Icon, Img, Divider };
 
 // ... and as named imports.
 export { Canvas, Text, Button, ParentPanel, ExportPanel, MasterPanel, InspectorPanel, WidgetListPanel, Heading, Paragraph, Label, Badge, RichText, Icon, ICON_NAMES, Img, Divider };
+=======
+import { IconButton } from "./widgets/IconButton.jsx";
+import { AIWidget, AIPanel } from "./widgets/AIWidget.jsx";
+import { aiSelectionStore } from "./widgets/aiSelectionStore.js";
+
+// Everything is available as UI.Something ...
+export const UI = { Canvas, Text, Button, ParentPanel, ExportPanel, MasterPanel, InspectorPanel, WidgetListPanel, useSocketUI, useMqttUI, Heading, Paragraph, Label, Badge, RichText, Icon, Img, Divider, IconButton, AIWidget, AIPanel, aiSelectionStore };
+
+// ... and as named imports.
+export { Canvas, Text, Button, ParentPanel, ExportPanel, MasterPanel, InspectorPanel, WidgetListPanel, Heading, Paragraph, Label, Badge, RichText, Icon, ICON_NAMES, Img, Divider, IconButton, AIWidget, AIPanel, aiSelectionStore };
+>>>>>>> Version2.1.1
 export { UIProvider } from "./UIProvider.jsx";
 export { createWidget } from "./createWidget.jsx";
 export { useUIElement, useUILayout, useUIConfig } from "./hooks.js";

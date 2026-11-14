@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿import { describe, it, expect } from "vitest";
+=======
+import { describe, it, expect } from "vitest";
+>>>>>>> Version2.1.1
 import { render, fireEvent, screen } from "@testing-library/react";
 import { UI, UIProvider, useUILayout } from "@devcrish/headwind";
 
@@ -122,7 +126,11 @@ describe("UI.Img: showDragHandle property", () => {
   it("drag handle renders in loading, error, and placeholder states", () => {
     const t = setup(<UI.Img id="imgLoading" loading={true} showDragHandle={true} />);
     expect(screen.getByTestId("img-drag-handle")).toBeTruthy();
+<<<<<<< HEAD
     expect(screen.getByText("Loadingâ€¦")).toBeTruthy();
+=======
+    expect(screen.getByText("Loading…")).toBeTruthy();
+>>>>>>> Version2.1.1
 
     t.rerender(
       <UI.Img id="imgLoading" error={true} errorText="Err" showDragHandle={true} />

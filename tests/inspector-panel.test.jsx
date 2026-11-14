@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿import { describe, it, expect, vi, beforeEach } from "vitest";
+=======
+import { describe, it, expect, vi, beforeEach } from "vitest";
+>>>>>>> Version2.1.1
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import { UI, UIProvider, InspectorPanel } from "@devcrish/headwind";
 

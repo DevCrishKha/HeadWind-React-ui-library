@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿# 5. Code Map: Where Every Default and Non-Default Behaviour Comes From
+=======
+# 5. Code Map: Where Every Default and Non-Default Behaviour Comes From
+>>>>>>> Version2.1.1
 
 ## 5.1 Repository layout
 
